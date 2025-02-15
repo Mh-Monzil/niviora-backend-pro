@@ -1,46 +1,36 @@
 import { Request, Response } from 'express';
 import userValidationSchema from './user.validation';
 import { UserService } from './user.service';
+import catchAsync from '../../utils/catchAsync';
+import sendResponse from '../../utils/sendResponse';
+import status from 'http-status';
 
-const createUser = async (req: Request, res: Response) => {
-  try {
-    const { user } = req.body;
-    const zodParsedData = userValidationSchema.parse(user);
+const createUser = catchAsync(async (req: Request, res: Response) => {
+  const { user } = req.body;
+  const zodParsedData = userValidationSchema.parse(user);
 
-    const result = await UserService.createUserInDB(zodParsedData);
+  const result = await UserService.createUserInDB(zodParsedData);
 
-    //send response
-    res.status(200).send({
-      success: true,
-      message: 'User created successfully',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).send({
-      success: false,
-      message: 'Error in creating student',
-      error,
-    });
-  }
-};
+  //send response
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'User created successfully',
+    data: result,
+  });
+});
 
-const getAllUser = async (req: Request, res: Response) => {
-  try {
-    const result = await UserService.getAllUserFromDB();
+const getAllUser = catchAsync(async (req: Request, res: Response) => {
+  const result = await UserService.getAllUserFromDB();
 
-    res.status(200).send({
-      success: true,
-      message: 'Student retrieved successfully',
-      data: result,
-    });
-  } catch (error) {
-    res.status(500).send({
-      success: true,
-      message: 'Users not found',
-      data: error,
-    });
-  }
-};
+  //send response
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'User retrieved successfully',
+    data: result,
+  });
+});
 
 export const UserController = {
   createUser,
