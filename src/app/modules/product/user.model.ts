@@ -8,7 +8,7 @@ const productSchema = new Schema(
     stock: { type: Number, required: true },
     category: { type: Schema.Types.ObjectId, ref: 'Category' },
     brand: { type: String },
-    images: [{ type: String }], // Array of image URLs
+    images: [{ type: String, required: true }], // Array of image URLs
     ratings: [
       {
         user: { type: Schema.Types.ObjectId, ref: 'User' },
