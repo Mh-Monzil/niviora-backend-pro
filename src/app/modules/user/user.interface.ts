@@ -8,7 +8,6 @@ export type User = {
 
   //User Role and Status
   role: 'user' | 'admin' | 'moderator' | 'beauty_expert';
-  isVerified?: boolean;
 
   //Skin Profile
   skinProfile?: {
