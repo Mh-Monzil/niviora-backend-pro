@@ -27,10 +27,6 @@ const userSchema = new Schema(
       enum: ['user', 'admin', 'moderator', 'beauty_expert'],
       default: 'user',
     },
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
 
     // Skin Profile
     skinProfile: {
@@ -45,19 +41,6 @@ const userSchema = new Schema(
       },
     },
 
-    // Shopping & Preferences
-    shoppingCart: [
-      {
-        product: {
-          type: Schema.Types.ObjectId,
-          ref: 'Product',
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-      },
-    ],
     wishlist: [
       {
         type: Schema.Types.ObjectId,
