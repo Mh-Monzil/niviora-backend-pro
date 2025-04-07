@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 
-export type User = {
+export type TUser = {
   //Basic Information
   name: string;
   email: string;
