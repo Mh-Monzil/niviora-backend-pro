@@ -21,7 +21,7 @@ export const userValidationSchema = z.object({
   shoppingCart: z
     .array(
       z.object({
-        product: z.string(), // Assuming MongoDB ObjectId stored as string
+        product: z.string(),
         quantity: z.number().min(1).default(1),
       }),
     )
