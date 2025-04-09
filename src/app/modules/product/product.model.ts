@@ -9,15 +9,12 @@ const productSchema = new Schema(
     category: { type: String },
     brand: { type: String },
     images: [{ type: String, publicId: String, required: true }],
-    ratings: [
-      {
-        user: { type: Schema.Types.ObjectId, ref: 'User' },
-        rating: { type: Number, min: 1, max: 5 },
-        review: { type: String },
-        createdAt: { type: Date, default: Date.now },
-      },
-    ],
+    reviews: [{ type: Schema.Types.ObjectId, ref: 'Review', required: true }],
     avgRating: { type: Number, default: 0 },
+    numReviews: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true },
 );
