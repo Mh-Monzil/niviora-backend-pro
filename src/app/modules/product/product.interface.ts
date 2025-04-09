@@ -1,3 +1,4 @@
+import { Model } from 'mongoose';
 import { Types } from 'mongoose';
 
 export interface TRating {
@@ -12,7 +13,7 @@ export interface TImage {
   publicId: string;
 }
 
-export interface IProduct {
+export interface TProduct {
   _id?: Types.ObjectId;
   title: string;
   description: string;
@@ -24,4 +25,8 @@ export interface IProduct {
   ratings: TRating[];
   avgRating?: number;
   createdAt?: Date;
+}
+
+export interface ProductModel extends Model<TProduct> {
+  calculateReviewsStats(productId: string): Promise<void>;
 }

@@ -1,4 +1,5 @@
 import { model, Schema } from 'mongoose';
+import { Product } from '../product/product.model';
 
 const reviewSchema = new Schema(
   {
@@ -13,5 +14,16 @@ const reviewSchema = new Schema(
   },
   { timestamps: true },
 );
+
+reviewSchema.post('save', async function () {
+  const review = await this.populate('product');
+  await Product.calculateReviewsStats(review.product._id.toString());
+});
+
+reviewSchema.post('findOneAndDelete', async function (doc) {
+  if (doc) {
+    await Product.calculateReviewsStats(doc.product._id.toString());
+  }
+});
 
 module.exports = model('Review', reviewSchema);
