@@ -5,6 +5,12 @@ const getAllProductFromDB = async () => {
   return result;
 };
 
+const getProductByIdFromDB = async (id: string) => {
+  const result = await Product.findById(id).populate('reviews');
+  return result;
+};
+
 export const ProductService = {
   getAllProductFromDB,
+  getProductByIdFromDB,
 };
