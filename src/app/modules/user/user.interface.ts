@@ -25,6 +25,7 @@ export type TUser = {
 
   // Reviews & Ratings
   reviews?: (Types.ObjectId | string)[]; // Added string type here
+  orderHistory?: (Types.ObjectId | string)[]; // Added string type here
 
   // Shipping & Billing
   addresses?: {

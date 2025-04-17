@@ -10,7 +10,13 @@ const getProductByIdFromDB = async (id: string) => {
   return result;
 };
 
+const deleteProductByIdFromDB = async (id: string) => {
+  const result = await Product.findByIdAndDelete(id).populate('reviews');
+  return result;
+};
+
 export const ProductService = {
   getAllProductFromDB,
   getProductByIdFromDB,
+  deleteProductByIdFromDB,
 };

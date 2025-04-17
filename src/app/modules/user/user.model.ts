@@ -57,6 +57,13 @@ const userSchema = new Schema<TUser>(
       },
     ],
 
+    orderHistory: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Order',
+      },
+    ],
+
     // Shipping & Billing
     addresses: [
       {
